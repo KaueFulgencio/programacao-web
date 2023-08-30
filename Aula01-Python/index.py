@@ -57,4 +57,43 @@ def data():
     else:
         print('Selecione um mes de 0 a 12')          
 
-data()
+
+def rangeFunc():
+    inicio=int(input("Digite o numero inicial: "))
+    fim=int(input("Digite o numero de fim: "))
+    passo=int(input("Digite o numero de passos: "))
+
+    valor=inicio
+    aux=0
+    
+    while valor < fim:
+        print(valor)
+        aux+=valor
+        valor+=passo
+        
+    print('Laço finalizado')
+    print(aux)
+        
+def imc():
+    altura=float[1.50, 1.70, 1.70, 1.80, 1.90, 1.85]
+    peso= int[60, 80, 80, 67, 90, 78]
+    calculo=0
+    contador=0
+        
+    for altura in altura:
+        for peso in peso:
+            pesos=peso[contador]
+            
+            calculo=peso/altura**2
+            contador+1
+            
+    if calculo < 18.5:
+        print('IMC abaixo de 18.5')
+    elif 18.5 <= calculo < 25:
+        print('IMC maior ou igual a 18.5 e menor que 25') 
+    elif 25 <= calculo < 30:
+        print('IMC maior ou igual a 25 e menor que 30')
+    elif calculo > 30:
+        print('IMC maior que 30')
+
+imc()
