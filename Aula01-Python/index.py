@@ -96,4 +96,5 @@ def imc():
     elif calculo > 30:
         print('IMC maior que 30')
 
-imc()
+
+#Teste
