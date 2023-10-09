@@ -20,7 +20,7 @@ def main():
         print('5- Grafico de Linhas')
         print('6- Dispersão (Scatterplot)')
         print('7- Histograma')
-        escolha = int(input('Digite a opção (1 a 4):'))
+        escolha = int(input('Digite a opção (1 a 7):'))
 
         if escolha == 1:
             arquivo_csv = input("Digite o nome do arquivo CSV de entrada: ")
