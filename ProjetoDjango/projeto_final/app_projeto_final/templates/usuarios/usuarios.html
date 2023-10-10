@@ -9,12 +9,14 @@
                 <th>id</th>
                 <th>email</th>
                 <th>senha</th>
+                <th>nome</th>
             </tr>
             {% for usuario in usuarios %}
             <tr>
                 <td>{{usuario.id_user}}</td>
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.senha}}</td>
+                <td>{{usuario.nome}} </td>
             </tr>
             {% endfor %}
         </table>
