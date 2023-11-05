@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Página</title>
+{% extends "base.html" %}
+
+{% block content %}
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,15 +28,6 @@
             padding: 10px;
         }
     </style>
-</head>
-<body>
-    {% block content %}
-        <nav class="navbar">
-            <ul>
-                <li><a href="{% url 'descricao_grupo' %}">Descrição do Grupo</a></li>
-                <li><a href="{% url 'detalhes_integrante' integrante_id=1 %}">Detalhe integrante</a></li>
-            </ul>
-        </nav>
         <section>
             <h2>Lista de Integrantes</h2>
             <ul class="integrantes-list">
@@ -55,9 +43,6 @@
                 {% endfor %}
             </ul>
         </section>
-        <footer class="page-footer">
-            <p>&copy; 2023 Minha Página</p>
-        </footer>
-    {% endblock %}
-</body>
-</html>
+        
+{% endblock %}
+

@@ -1,6 +1,88 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <style>
+    nav {
+        background-color: white;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    nav li {
+        display: inline;
+        margin: 10px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    .integrante-details {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .integrante-info {
+        flex: 1;
+        margin-right: 20px;
+    }
+    
+    .integrante-name {
+        font-size: 20px;
+        color: #333;
+    }
+    
+    .integrante-type {
+        font-size: 16px;
+        color: #666;
+    }
+    
+    .publicacoes {
+        flex: 2;
+    }
+    
+    .publicacoes-title {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .publicacoes-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .publicacao-item {
+        margin-bottom: 20px;
+    }
+    
+    .publicacao-titulo {
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+    }
+    
+    .publicacao-ano {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .publicacao-onde {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .publicacao-autores {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    </style>
+
     <section>
         <h2>Descrição do Grupo de Pesquisa</h2>
         <p>

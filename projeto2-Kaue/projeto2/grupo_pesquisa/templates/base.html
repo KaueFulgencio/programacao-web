@@ -10,14 +10,10 @@
             margin: 0;
             padding: 0;
         }
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
-        nav {
+        .navbar {
             background-color: white;
+            color: #333;
+            padding: 10px;
         }
         nav ul {
             list-style: none;
@@ -28,69 +24,26 @@
             display: inline;
             margin: 10px;
         }
-        section {
-            padding: 20px;
-        }
-        aside {
-            background-color: #ccc;
-            width: 25%;
-            padding: 20px;
-        }
-        footer {
+        .page-footer {
             background-color: #333;
             color: #fff;
             text-align: center;
             padding: 10px;
         }
-        @media (max-width: 768px) {
-            nav ul {
-                text-align: center;
-                padding: 10px;
-            }
-            nav li {
-                display: block;
-                margin: 5px;
-            }
-        }
-
-        /* Estilos para a navbar (para telas menores) */
-        @media (max-width: 768px) {
-            nav ul {
-                text-align: center;
-                padding: 10px;
-            }
-            nav li {
-                display: block;
-                margin: 5px;
-            }
-        }
-
-        /* Estilos para a barra lateral (para telas maiores) */
-        aside {
-            background-color: #ccc;
-            width: 25%;
-            padding: 20px;
-        }
-
-        /* Estilos para a barra lateral (para telas menores) */
-        @media (max-width: 768px) {
-            aside {
-                width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
-    <nav>
+    <nav class="navbar">
         <ul>
             <li><a href="{% url 'descricao_grupo' %}">Descrição do Grupo</a></li>
             <li><a href="{% url 'lista_integrantes' %}">Lista de Integrantes</a></li>
             <li><a href="{% url 'detalhes_integrante' integrante_id=1 %}">Detalhe integrante</a></li>
         </ul>
     </nav>
-    <header>
-        <h1>Minha Página</h1>
-    </header>
-    
+    {% block content %}
+    {% endblock %}
+    <footer class="page-footer">
+        <p>&copy; 2023 Minha Página</p>
+    </footer>
 </body>
 </html>
