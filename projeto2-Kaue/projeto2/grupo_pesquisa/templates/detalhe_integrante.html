@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section>
+        <h2>Detalhes do Integrante</h2>
+        <h3>{{ integrante.nome }}</h3>
+        <p>Tipo: {{ integrante.tipo }}</p>
+        <img src="{{ integrante.foto.url }}" alt="{{ integrante.nome }}">
+
+        <h3>Publicações</h3>
+        <ul>
+            {% for publicacao in publicacoes %}
+                <li>{{ publicacao.titulo }} ({{ publicacao.ano_publicacao }}) - {{ publicacao.onde_publicado }} - Autores: {{ publicacao.autores }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
