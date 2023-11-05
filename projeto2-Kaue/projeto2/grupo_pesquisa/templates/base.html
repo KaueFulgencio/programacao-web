@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Página</title>
-    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
     <style>
-        /* Desktop */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
         nav {
-            background-color: #444;
+            background-color: white;
         }
         nav ul {
             list-style: none;
@@ -19,8 +28,20 @@
             display: inline;
             margin: 10px;
         }
-
-        /* Tela responsiva */
+        section {
+            padding: 20px;
+        }
+        aside {
+            background-color: #ccc;
+            width: 25%;
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
         @media (max-width: 768px) {
             nav ul {
                 text-align: center;
@@ -32,13 +53,26 @@
             }
         }
 
-        /* Tela responsiva */
+        /* Estilos para a navbar (para telas menores) */
+        @media (max-width: 768px) {
+            nav ul {
+                text-align: center;
+                padding: 10px;
+            }
+            nav li {
+                display: block;
+                margin: 5px;
+            }
+        }
+
+        /* Estilos para a barra lateral (para telas maiores) */
         aside {
             background-color: #ccc;
             width: 25%;
             padding: 20px;
         }
 
+        /* Estilos para a barra lateral (para telas menores) */
         @media (max-width: 768px) {
             aside {
                 width: 100%;
@@ -49,10 +83,9 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Seção 1</a></li>
-            <li><a href="#">Seção 2</a></li>
-            <li><a href="#">Contato</a></li>
+            <li><a href="{% url 'descricao_grupo' %}">Descrição do Grupo</a></li>
+            <li><a href="{% url 'lista_integrantes' %}">Lista de Integrantes</a></li>
+            <li><a href="{% url 'detalhes_integrante' integrante_id=1 %}">Detalhe integrante</a></li>
         </ul>
     </nav>
     <header>

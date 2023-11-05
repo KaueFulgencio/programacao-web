@@ -1,11 +1,17 @@
-{% extends "base.html" %}
 
 {% block content %}
     <section>
         <h2>Lista de Integrantes</h2>
-        <ul>
+        <ul class="integrantes-list">
             {% for integrante in integrantes %}
-                <li><a href="{% url 'detalhes_integrante' integrante.id %}">{{ integrante.nome }}</a> - {{ integrante.tipo }}</li>
+                <li>
+                    <a href="{% url 'detalhes_integrante' integrante.id %}">
+                        <div class="integrante-info">
+                            <h3>{{ integrante.nome }}</h3>
+                            <p>Tipo: {{ integrante.tipo }}</p>
+                        </div>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
     </section>
