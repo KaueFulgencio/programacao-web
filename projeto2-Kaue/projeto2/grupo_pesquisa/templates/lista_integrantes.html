@@ -1,18 +1,63 @@
-
-{% block content %}
-    <section>
-        <h2>Lista de Integrantes</h2>
-        <ul class="integrantes-list">
-            {% for integrante in integrantes %}
-                <li>
-                    <a href="{% url 'detalhes_integrante' integrante.id %}">
-                        <div class="integrante-info">
-                            <h3>{{ integrante.nome }}</h3>
-                            <p>Tipo: {{ integrante.tipo }}</p>
-                        </div>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </section>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Página</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: white;
+            color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav li {
+            display: inline;
+            margin: 10px;
+        }
+        .page-footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+        <nav class="navbar">
+            <ul>
+                <li><a href="{% url 'descricao_grupo' %}">Descrição do Grupo</a></li>
+                <li><a href="{% url 'detalhes_integrante' integrante_id=1 %}">Detalhe integrante</a></li>
+            </ul>
+        </nav>
+        <section>
+            <h2>Lista de Integrantes</h2>
+            <ul class="integrantes-list">
+                {% for integrante in integrantes %}
+                    <li>
+                        <a href="{% url 'detalhes_integrante' integrante.id %}">
+                            <div class="integrante-info">
+                                <h3>{{ integrante.nome }}</h3>
+                                <p>Tipo: {{ integrante.tipo }}</p>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <footer class="page-footer">
+            <p>&copy; 2023 Minha Página</p>
+        </footer>
+    {% endblock %}
+</body>
+</html>
