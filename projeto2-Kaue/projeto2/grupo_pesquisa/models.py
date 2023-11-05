@@ -2,6 +2,9 @@ from django.db import models
 
 # Create your models here.
 
+def upload_location(instance, filename):
+    return f'fotos/{filename}'
+
 class Integrante(models.Model):
     nome = models.CharField(max_length=100)
     TIPO_CHOICES = (
@@ -12,7 +15,7 @@ class Integrante(models.Model):
         ('Professor', 'Professor'),
     )
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
-    foto = models.ImageField(upload_to='fotos/', blank=True, null=True)
+    foto = models.ImageField(upload_to=upload_location)
 
     def __str__(self):
         return self.nome

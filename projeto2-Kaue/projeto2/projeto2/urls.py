@@ -24,7 +24,7 @@ urlpatterns = [
     path('', views.descricao_grupo, name='descricao_grupo'),
     path('lista_integrantes/', views.lista_integrantes, name='lista_integrantes'),
     path('integrante/<int:integrante_id>/', views.detalhes_integrante, name='detalhes_integrante'),
+    path('adicionar_foto_integrante/<int:integrante_id>/', views.adicionar_foto_integrante, name='adicionar_foto_integrante')
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

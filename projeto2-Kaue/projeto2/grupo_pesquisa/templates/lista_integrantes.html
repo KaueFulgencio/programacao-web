@@ -27,22 +27,41 @@
             text-align: center;
             padding: 10px;
         }
+        .integrantes-list {
+            list-style: none;
+            padding: 0;
+        }
+        .integrantes-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .integrantes-list img {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+        .integrante-info {
+            flex: 1;
+        }
     </style>
-        <section>
-            <h2>Lista de Integrantes</h2>
-            <ul class="integrantes-list">
-                {% for integrante in integrantes %}
-                    <li>
-                        <a href="{% url 'detalhes_integrante' integrante.id %}">
-                            <div class="integrante-info">
-                                <h3>{{ integrante.nome }}</h3>
-                                <p>Tipo: {{ integrante.tipo }}</p>
-                            </div>
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </section>
-        
+    <section>
+        <h2>Lista de Integrantes</h2>
+        <ul class="integrantes-list">
+            {% for integrante in integrantes %}
+                <li>
+                    <img src="{{ integrante.foto.url }}" alt="{{ integrante.nome }}">
+                    <div class="integrante-info">
+                        <h3>{{ integrante.nome }}</h3>
+                        <p>Tipo: {{ integrante.tipo }}</p>
+                        <a href="{% url 'detalhes_integrante' integrante.id %}">Detalhes</a>
+                    </div>
+                    <a href="{% url 'adicionar_foto_integrante' integrante.id %}" class="btn btn-primary">Adicionar Foto</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
+
+
 
