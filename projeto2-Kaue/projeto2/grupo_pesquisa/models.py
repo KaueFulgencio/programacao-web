@@ -20,8 +20,6 @@ class Integrante(models.Model):
     def __str__(self):
         return self.nome
 
-from django.db import models
-
 class Publicacao(models.Model):
     integrante = models.ForeignKey(Integrante, on_delete=models.CASCADE, related_name='publicacoes')
     titulo = models.CharField(max_length=200)
@@ -41,3 +39,10 @@ class Publicacao(models.Model):
     def autores_as_string(self):
         return ", ".join(self.get_autores_list())
 
+
+class GrupoPesquisa(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+    
+    
+    

@@ -2,7 +2,9 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Integrante, Publicacao
+from .models import Integrante, Publicacao, GrupoPesquisa
+
+admin.site.register(GrupoPesquisa)
 
 @admin.register(Integrante)
 class IntegranteAdmin(admin.ModelAdmin):
