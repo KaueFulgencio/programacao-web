@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 
 #modelos
 from .models import Integrante, Publicacao, GrupoPesquisa
-from .forms import IntegranteForm
+from .forms import IntegranteForm, PublicacaoForm
 
 def descricao_grupo(request):
     return render(request, 'descricao_grupo.html')
@@ -15,8 +15,28 @@ def lista_integrantes(request):
 
 def detalhes_integrante(request, integrante_id):
     integrante = get_object_or_404(Integrante, pk=integrante_id)
-    publicacoes = Publicacao.objects.filter(integrante=integrante)
-    return render(request, 'detalhes_integrante.html', {'integrante': integrante, 'publicacoes': publicacoes})
+    publicacoes = integrante.publicacoes.all()
+    publicacoes_disponiveis = Publicacao.objects.all()
+    
+    if request.method == 'POST':
+        form = PublicacaoForm(request.POST)
+        if form.is_valid():
+            if 'publicacao_id' in request.POST:
+                # Se um ID de publicação foi fornecido, use a publicação existente
+                publicacao = get_object_or_404(Publicacao, pk=request.POST['publicacao_id'])
+            else:
+                # Se não for fornecido um ID de publicação, crie uma nova publicação
+                publicacao = form.save()
+            integrante.publicacoes.add(publicacao)
+
+    form = PublicacaoForm()
+    
+    return render(request, 'detalhes_integrante.html', {
+        'integrante': integrante,
+        'publicacoes': publicacoes,
+        'publicacoes_disponiveis': publicacoes_disponiveis,
+        'form': form,
+    })
 
 def adicionar_foto_integrante(request, integrante_id):
     integrante = Integrante.objects.get(pk=integrante_id)
