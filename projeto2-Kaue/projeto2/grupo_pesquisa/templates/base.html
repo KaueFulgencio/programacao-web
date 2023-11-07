@@ -39,7 +39,7 @@
             width: 100%;
             height: 50px;
             position: absolute;
-            bottom: 0;
+            bottom: -50;
             left: 0;
         }
     </style>
@@ -49,12 +49,12 @@
         <ul>
             <li><a href="{% url 'descricao_grupo' %}">Descrição do Grupo</a></li>
             <li><a href="{% url 'lista_integrantes' %}">Lista de Integrantes</a></li>
-            <!--<li><a href="{% url 'detalhes_integrante' integrante_id=1 %}">Detalhe integrante</a></li>-->
+            <li><a href="{% url 'adicionar_integrante' %}">Adicionar Integrante</a></li>
         </ul>
     </nav>
     {% block content %}
     {% endblock %}
-    <footer class="page-footer">
+    <footer class="page-footer">    
         <p>&copy; 2023 Minha Página</p>
     </footer>
 </body>

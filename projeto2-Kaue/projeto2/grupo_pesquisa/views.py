@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 
 #modelos
 from .models import Integrante, Publicacao, GrupoPesquisa
+from .forms import IntegranteForm
 
 def descricao_grupo(request):
     return render(request, 'descricao_grupo.html')
@@ -32,6 +33,16 @@ def descricao_grupo(request):
     grupos_pesquisa = GrupoPesquisa.objects.all()  
     return render(request, 'descricao_grupo.html', {'grupos_pesquisa': grupos_pesquisa})
 
+def adicionar_integrante(request):
+    if request.method == 'POST':
+        form = IntegranteForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_integrantes')
+    else:
+        form = IntegranteForm()
+    
+    return render(request, 'adicionar_integrante.html', {'form': form})
 
 from grupo_pesquisa.models import GrupoPesquisa 
 

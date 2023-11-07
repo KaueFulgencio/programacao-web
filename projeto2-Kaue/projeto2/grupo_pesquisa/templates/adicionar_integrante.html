@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+        .integrante-form {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 100%;
+        }
+        
+        .back-link {
+            margin-top: 10px; 
+        }
+        
+    </style>
+
+    <h2>Adicionar Integrante</h2>
+    <form method="post" enctype="multipart/form-data" class="integrante-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Adicionar Integrante</button>
+        <p class="back-link">
+            <a href="{% url 'lista_integrantes' %}">Voltar para a lista de integrantes</a>
+        </p>
+    </form>
+    
+{% endblock %}
