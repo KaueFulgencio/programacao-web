@@ -29,13 +29,9 @@ def adicionar_foto_integrante(request, integrante_id):
     return render(request, 'adicionar_foto_integrante.html', {'integrante': integrante})
 
 def descricao_grupo(request):
-    grupo_pesquisa = GrupoPesquisa.objects.first()  
+    grupos_pesquisa = GrupoPesquisa.objects.all()  
+    return render(request, 'descricao_grupo.html', {'grupos_pesquisa': grupos_pesquisa})
 
-    context = {
-        'grupo_pesquisa': grupo_pesquisa,  
-    }
-
-    return render(request, 'descricao_grupo.html', context)
 
 from grupo_pesquisa.models import GrupoPesquisa 
 
