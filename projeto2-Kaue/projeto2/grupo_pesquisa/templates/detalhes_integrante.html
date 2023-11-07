@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+        
+        .section-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .integrante-details {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        
+        .integrante-info {
+            flex: 1;
+            margin-right: 20px;
+        }
+        
+        .integrante-name {
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .integrante-type {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .publicacoes {
+            flex: 2;
+        }
+        
+        .publicacoes-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .publicacoes-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .publicacao-item {
+            margin-bottom: 20px;
+        }
+        
+        .publicacao-titulo {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .publicacao-ano {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .publicacao-onde {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .publicacao-autores {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        img {
+            max-width: 100px;
+            max-height: 100px; 
+            border-radius: 10px; 
+            margin-right: 20px;
+        }
+    </style>
+
+    <section>
+        <h2 class="section-title">Detalhes do Integrante</h2>
+        <div class="integrante-details">
+            <img src="{{ integrante.foto.url }}" alt="{{ integrante.nome }}">
+            <div class="integrante-info">
+                <h3 class="integrante-name">{{ integrante.nome }}</h3>
+                <p class="integrante-type">Tipo: {{ integrante.tipo }}</p>
+            </div>
+            <div class="publicacoes">
+                <h3 class="publicacoes-title">Publicações</h3>
+                <ul class="publicacoes-list">
+                    {% for publicacao in publicacoes %}
+                        <li class="publicacao-item">
+                            <span class="publicacao-titulo">{{ publicacao.titulo }}</span>
+                            <span class="publicacao-ano">({{ publicacao.ano_publicacao }})</span><br>
+                            <span class="publicacao-onde">Onde publicado: {{ publicacao.onde_publicado }}</span><br>
+                            <span class="publicacao-autores">Autores: {{ publicacao.autores }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}

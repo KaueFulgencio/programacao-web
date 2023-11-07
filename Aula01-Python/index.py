@@ -97,4 +97,11 @@ def imc():
         print('IMC maior que 30')
 
 
-#Teste
+def funcao_custo(individuo, conjunto_S, M):
+    soma_subconjunto = 0
+    for i in range(len(individuo)):
+        if individuo[i] == 1:
+            soma_subconjunto += conjunto_S[i]
+    
+    diferenca = abs(soma_subconjunto - M/2)
+    return diferenca
