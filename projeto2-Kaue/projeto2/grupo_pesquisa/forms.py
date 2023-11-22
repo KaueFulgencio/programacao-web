@@ -6,11 +6,19 @@ class PublicacaoForm(forms.ModelForm):
         model = Publicacao
         fields = ['titulo', 'ano_publicacao', 'onde_publicado', 'autores']
 
-    def clean_ano_publicacao(self):
-        ano_publicacao = self.cleaned_data.get('ano_publicacao')
-        if ano_publicacao is None:
-            raise forms.ValidationError("Ano de publicação é obrigatório.")
-        return ano_publicacao
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # campos opcionais não são obrigatorios se escolher publicacao existente
+        self.fields['titulo'].required = False
+        self.fields['ano_publicacao'].required = False
+        self.fields['onde_publicado'].required = False
+        self.fields['autores'].required = False
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if not any(cleaned_data.values()):  # Verifica se algum campo foi preenchido
+            raise forms.ValidationError("Preencha ao menos um campo para a publicação existente.")
+        return cleaned_data
 
         
 class IntegranteForm(forms.ModelForm):

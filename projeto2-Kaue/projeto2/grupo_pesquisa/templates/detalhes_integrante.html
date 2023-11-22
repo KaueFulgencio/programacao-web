@@ -105,7 +105,11 @@
                             <span class="publicacao-titulo">{{ publicacao.titulo }}</span>
                             <span class="publicacao-ano">({{ publicacao.ano_publicacao }})</span><br>
                             <span class="publicacao-onde">Onde publicado: {{ publicacao.onde_publicado }}</span><br>
-                            <span class="publicacao-autores">Autores: {{ publicacao.autores }}</span>
+                            <span class="publicacao-autores">Autores:
+                                {% for autor in publicacao.autores.all %}
+                                    {{ autor.nome }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </span>
                         </li>
                     {% endfor %}
                 </ul>

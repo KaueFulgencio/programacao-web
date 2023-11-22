@@ -6,12 +6,17 @@ from django.shortcuts import get_object_or_404
 from .models import Integrante, Publicacao, GrupoPesquisa
 from .forms import IntegranteForm, PublicacaoForm
 
-def descricao_grupo(request):
-    return render(request, 'descricao_grupo.html')
-
 def lista_integrantes(request):
-    integrantes = Integrante.objects.all()
-    return render(request, 'lista_integrantes.html', {'integrantes': integrantes})
+    integrantes = Integrante.objects.order_by('nome')
+    integrantes_unicos = []
+    integrante_atual = None
+
+    for integrante in integrantes:
+        if integrante.nome != integrante_atual:
+            integrante_atual = integrante.nome
+            integrantes_unicos.append(integrante)
+
+    return render(request, 'lista_integrantes.html', {'integrantes': integrantes_unicos})
 
 def detalhes_integrante(request, integrante_id):
     integrante = get_object_or_404(Integrante, pk=integrante_id)
@@ -21,13 +26,11 @@ def detalhes_integrante(request, integrante_id):
     if request.method == 'POST':
         form = PublicacaoForm(request.POST)
         if form.is_valid():
-            if 'publicacao_id' in request.POST:
-                # Se um ID de publicação foi fornecido, use a publicação existente
-                publicacao = get_object_or_404(Publicacao, pk=request.POST['publicacao_id'])
-            else:
-                # Se não for fornecido um ID de publicação, crie uma nova publicação
-                publicacao = form.save()
-            integrante.publicacoes.add(publicacao)
+            publicacao_id = request.POST.get('publicacao_id')  # Obtém o ID da publicação selecionada
+            if publicacao_id:
+                publicacao_existente = get_object_or_404(Publicacao, pk=publicacao_id)
+                integrante.publicacoes.add(publicacao_existente)
+                return redirect('detalhes_integrante', integrante_id=integrante_id)
 
     form = PublicacaoForm()
     
