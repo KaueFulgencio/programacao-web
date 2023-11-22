@@ -3,59 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Página</title>
+    <title>Conecta+</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            max-width: 400px;
-            background-color: papayawhip; 
-            margin: 0 auto;
-            position: relative;
+            background-color: #f0f0f0; /* Cor de fundo do corpo da página */
+            display: flex;
+            flex-direction: column;
         }
         .navbar {
-            background-color: #46ACC2;
-            display: flex;
-            padding: 16px;
-            font-family: sans-serif;
+            background-color: #b19cd9;;
             color: white;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
         }
-        nav ul {
+        .navbar ul {
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;
         }
-        nav li {
-            display: inline;
-            margin: 10px;
+        .navbar li {
+            margin-right: 20px;
+        }
+        .navbar li:last-child {
+            margin-right: 0;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        .page-content {
+            flex-grow: 1;
+            padding: 20px;
         }
         .page-footer {
-            background-color: #46ACC2;
+            background-color: #b19cd9;;
             color: #fff;
             text-align: center;
             padding: 10px;
-            width: 100%;
-            height: 50px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
+        <div>
+            <h1>Conecta+</h1>
+        </div>
         <ul>
             <li><a href="{% url 'descricao_grupo' %}">Descrição do Grupo</a></li>
             <li><a href="{% url 'lista_integrantes' %}">Lista de Integrantes</a></li>
-            <!--<li><a href="{% url 'detalhes_integrante' integrante_id=1 %}">Detalhe integrante</a></li>-->
+            <li><a href="{% url 'adicionar_integrante' %}">Adicionar Integrante</a></li>
         </ul>
     </nav>
-    {% block content %}
-    {% endblock %}
-    <footer class="page-footer">
-        <p>&copy; 2023 Minha Página</p>
+    <div class="page-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer class="page-footer">    
+        <p>&copy; Conecta+ Todos os Direitos Reservados</p>
     </footer>
 </body>
 </html>

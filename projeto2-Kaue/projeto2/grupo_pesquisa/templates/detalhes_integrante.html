@@ -1,44 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     <style>
-        
         .section-title {
             font-size: 24px;
-            color: #333;
             margin-bottom: 20px;
         }
         
         .integrante-details {
             display: flex;
-            justify-content: space-between;
-            max-width: 800px; 
-            margin: 0 auto; 
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .integrante-image {
+            max-width: 150px;
+            margin-right: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         
         .integrante-info {
             flex: 1;
-            margin-right: 20px;
         }
         
         .integrante-name {
-            font-size: 20px;
-            color: #333;
+            font-size: 18px;
         }
         
         .integrante-type {
             font-size: 16px;
-            color: #666;
-        }
-        
-        .publicacoes {
-            flex: 2;
+            color: #888;
         }
         
         .publicacoes-title {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 20px;
+            margin-top: 20px;
         }
         
         .publicacoes-list {
@@ -52,37 +50,49 @@
         
         .publicacao-titulo {
             font-size: 16px;
-            color: #333;
             font-weight: bold;
         }
         
         .publicacao-ano {
             font-size: 14px;
-            color: #666;
+            color: #888;
         }
         
         .publicacao-onde {
             font-size: 14px;
-            color: #666;
         }
         
         .publicacao-autores {
             font-size: 14px;
-            color: #666;
         }
         
-        img {
-            max-width: 100px;
-            max-height: 100px; 
-            border-radius: 10px; 
-            margin-right: 20px;
+        .btn {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
+        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .select-box {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
     </style>
 
     <section>
         <h2 class="section-title">Detalhes do Integrante</h2>
         <div class="integrante-details">
-            <img src="{{ integrante.foto.url }}" alt="{{ integrante.nome }}">
+            <img src="{{ integrante.foto.url }}" alt="{{ integrante.nome }}" class="integrante-image">
             <div class="integrante-info">
                 <h3 class="integrante-name">{{ integrante.nome }}</h3>
                 <p class="integrante-type">Tipo: {{ integrante.tipo }}</p>
@@ -95,11 +105,39 @@
                             <span class="publicacao-titulo">{{ publicacao.titulo }}</span>
                             <span class="publicacao-ano">({{ publicacao.ano_publicacao }})</span><br>
                             <span class="publicacao-onde">Onde publicado: {{ publicacao.onde_publicado }}</span><br>
-                            <span class="publicacao-autores">Autores: {{ publicacao.autores }}</span>
+                            <span class="publicacao-autores">Autores:
+                                {% for autor in publicacao.autores.all %}
+                                    {{ autor.nome }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </span>
                         </li>
                     {% endfor %}
                 </ul>
+                <button id="adicionar-publicacao" class="btn">Adicionar Publicação</button>
             </div>
         </div>
     </section>
+
+    <div class="publicacao-form" style="display: none;">
+        <h3>Criar Nova Publicação</h3>
+        <form method="post">
+            {% csrf_token %}
+            <select name="publicacao_id" class="select-box">
+                <option value="">Selecione uma publicação existente</option>
+                {% for publicacao in publicacoes_disponiveis %}
+                    <option value="{{ publicacao.id }}">{{ publicacao.titulo }}</option>
+                {% endfor %}
+            </select>
+            {{ form.as_p }}
+            <button type="submit" class="btn">Adicionar Publicação</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('adicionar-publicacao').addEventListener('click', function () {
+            const form = document.querySelector('.publicacao-form');
+            form.style.display = 'block';
+        });
+    </script>
+</div>
 {% endblock %}
