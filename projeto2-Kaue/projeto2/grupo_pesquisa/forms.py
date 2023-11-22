@@ -22,5 +22,14 @@ class GrupoPesquisaForm(forms.ModelForm):
     class Meta:
         model = GrupoPesquisa
         fields = ['nome', 'descricao']
+        widgets = {
+            'descricao': forms.Textarea(attrs={'rows': 4, 'cols': 40}),  
+        }
+
+    def clean_nome(self):
+        nome = self.cleaned_data['nome']
+        if len(nome) < 3:
+            raise forms.ValidationError("O nome do grupo deve ter mais de 3 caracteres.")
+        return nome
         
         

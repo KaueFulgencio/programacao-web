@@ -50,8 +50,16 @@ def adicionar_foto_integrante(request, integrante_id):
     return render(request, 'adicionar_foto_integrante.html', {'integrante': integrante})
 
 def descricao_grupo(request):
-    grupos_pesquisa = GrupoPesquisa.objects.all()  
-    return render(request, 'descricao_grupo.html', {'grupos_pesquisa': grupos_pesquisa})
+    grupos_pesquisa = GrupoPesquisa.objects.order_by('nome')
+    grupos_unicos = []
+    grupo_atual = None
+
+    for grupo in grupos_pesquisa:
+        if grupo.nome != grupo_atual:
+            grupo_atual = grupo.nome
+            grupos_unicos.append(grupo)
+
+    return render(request, 'descricao_grupo.html', {'grupos_pesquisa': grupos_unicos})
 
 def adicionar_integrante(request):
     if request.method == 'POST':
@@ -64,8 +72,4 @@ def adicionar_integrante(request):
     
     return render(request, 'adicionar_integrante.html', {'form': form})
 
-from grupo_pesquisa.models import GrupoPesquisa 
 
-grupo_pesquisa = GrupoPesquisa(nome='GRUPO DE PESQUISA 1', descricao='Processo de criação em andamento...')
-
-grupo_pesquisa.save()

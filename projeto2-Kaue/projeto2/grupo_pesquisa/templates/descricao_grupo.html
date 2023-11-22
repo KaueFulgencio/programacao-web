@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block content %}
@@ -10,12 +9,13 @@
             background-color: #f5f5f5;
             padding: 20px;
             border-radius: 10px; 
+            margin-bottom: 20px; /* Adicionando margem entre os grupos */
         }
 
-        .grupo-description h2 {
+        .grupo-description h3 {
             font-size: 24px;
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .grupo-description p {
@@ -32,6 +32,14 @@
             <p>{{ grupo_pesquisa.descricao }}</p>
         </div>
         {% endfor %}
+
+        <div class="grupo-description">
+            <h3>Adicionar Novo Grupo de Pesquisa</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }} 
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
     </section>
 {% endblock %}
-

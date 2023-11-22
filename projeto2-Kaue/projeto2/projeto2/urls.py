@@ -17,10 +17,12 @@ Including another URLconf
 from django.urls import path
 from grupo_pesquisa import views
 
+from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.descricao_grupo, name='descricao_grupo'),
     path('lista_integrantes/', views.lista_integrantes, name='lista_integrantes'),
     path('integrante/<int:integrante_id>/', views.detalhes_integrante, name='detalhes_integrante'),
