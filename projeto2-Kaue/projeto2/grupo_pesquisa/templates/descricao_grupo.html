@@ -32,14 +32,5 @@
             <p>{{ grupo_pesquisa.descricao }}</p>
         </div>
         {% endfor %}
-
-        <div class="grupo-description">
-            <h3>Adicionar Novo Grupo de Pesquisa</h3>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }} 
-                <button type="submit">Salvar</button>
-            </form>
-        </div>
     </section>
 {% endblock %}
